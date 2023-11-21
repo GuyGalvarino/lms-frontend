@@ -1,12 +1,17 @@
 import { useState } from "react";
-import Login from "../Login/Login";
-import Signin from "../Signin/Signin";
+import { Link } from "react-router-dom";
 const Home = () => {
   const [signedIn, setSignedIn] = useState(false);
   return (
-    <>
-      <Signin />
-    </>
+    <div>
+      HOME
+      <button>
+        <Link to="/signin">Register</Link>
+      </button>
+      <button>
+        <Link to="/login">Login</Link>
+      </button>
+    </div>
   );
 };
 

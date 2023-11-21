@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { verifySignIn } from "../../services/signin";
+import svg from "../../assets/react.svg";
 const Otp = () => {
   const [otp, setOtp] = useState("");
   const updateOtp = (e) => {
@@ -23,7 +24,10 @@ const Otp = () => {
   };
   return (
     <div>
-      <input type="text" value={otp} onChange={updateOtp} />
+      <form onSubmit={submitForm}>
+        <input type="text" value={otp} onChange={updateOtp} />
+        <button type="submit">Submit</button>
+      </form>
     </div>
   );
 };
