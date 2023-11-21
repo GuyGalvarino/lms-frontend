@@ -12,17 +12,22 @@ export const requestOtp = async (name, email, password) => {
     userEmail = email;
     return true;
   } catch (e) {
-    console.error(e);
-    return false;
+    if(e.response && e.response.status === 403) {
+      throw new Error("User already exists")
+    }
+    throw new Error("Couldn't send OTP");
   }
 };
 
 export const verifySignIn = async (otp) => {
-  const res = await axios.get(
-    `http://localhost:8080/users/signin/verify/${userEmail}`,
-    {
-      otp,
-    }
-  );
-  return res.data
+  try {
+    const res = await axios.post(`http://localhost:8080/users/verify-otp`, {
+      email: userEmail,
+      otp: otp,
+    });
+    return res.data;
+  } catch (e) {
+    console.error(e);
+    throw new Error("Couldn't verify");
+  }
 };

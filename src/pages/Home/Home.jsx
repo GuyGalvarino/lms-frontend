@@ -1,16 +1,30 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
-const Home = () => {
-  const [signedIn, setSignedIn] = useState(false);
+const Home = ({ signedInUser, setSignedInUser }) => {
+  const logout = () => {
+    window.localStorage.removeItem("signedInUser");
+    setSignedInUser(null);
+  };
   return (
     <div>
       HOME
-      <button>
-        <Link to="/signin">Register</Link>
-      </button>
-      <button>
-        <Link to="/login">Login</Link>
-      </button>
+      {signedInUser ? (
+        <div>
+          <div>{signedInUser.name}</div>
+          <div>
+            <button onClick={logout}>Log Out</button>
+          </div>
+        </div>
+      ) : (
+        <div>
+          <button>
+            <Link to="/signin">Register</Link>
+          </button>
+          <button>
+            <Link to="/login">Login</Link>
+          </button>
+        </div>
+      )}
     </div>
   );
 };

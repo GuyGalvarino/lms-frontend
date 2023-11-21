@@ -1,22 +1,37 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { loginRequest } from "../../services/login";
 import { useNavigate } from "react-router-dom";
 
-const Login = () => {
+const Login = ({ signedInUser, setSignedInUser }) => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    if (signedInUser) {
+      navigate("/");
+    }
+  }, [signedInUser]);
 
   const submitForm = async (e) => {
     e.preventDefault();
     console.log("Submitting form...");
-    const res = await loginRequest(email, password);
-    console.log(res.data);
+    try {
+      const res = await loginRequest(email, password);
+      window.localStorage.setItem("signedInUser", JSON.stringify(res));
+      setSignedInUser(res);
+      navigate("/");
+    } catch (e) {
+      console.error(e);
+    }
   };
 
-  const navigate = useNavigate();
   return (
     <div>
-      <a href="" onClick={() => navigate(-1)}>Back</a>
+      <a href="" onClick={() => navigate(-1)}>
+        Back
+      </a>
       <form onSubmit={submitForm}>
         <div>
           <label htmlFor="email">Email</label>

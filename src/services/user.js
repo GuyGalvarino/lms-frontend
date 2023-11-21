@@ -10,7 +10,7 @@ export const getUser = async (email, token) => {
     return res.data;
   } catch (e) {
     console.error(e);
-    return null;
+    throw new Error("Couldn't get user")
   }
 };
 

@@ -1,8 +1,18 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { verifySignIn } from "../../services/signin";
-import svg from "../../assets/react.svg";
-const Otp = () => {
+import { useNavigate } from "react-router-dom";
+
+const Otp = ({ signedInUser, setSignedInUser }) => {
   const [otp, setOtp] = useState("");
+
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    if (signedInUser) {
+      navigate("/");
+    }
+  }, [signedInUser]);
+
   const updateOtp = (e) => {
     let allDigits = true;
     for (let i = 0; i < e.target.value.length; ++i) {
@@ -19,8 +29,14 @@ const Otp = () => {
   };
   const submitForm = async (e) => {
     e.preventDefault();
-    const res = await verifySignIn(otp);
-    console.log(res);
+    try {
+      const res = await verifySignIn(otp);
+      window.localStorage.setItem("signedInUser", JSON.stringify(res));
+      setSignedInUser(res);
+      navigate("/");
+    } catch (e) {
+      console.error(e);
+    }
   };
   return (
     <div>

@@ -1,15 +1,25 @@
 import { useState } from "react";
 import { requestOtp } from "../../services/signin";
+import { useNavigate } from "react-router-dom";
 
 const Form = () => {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
+  const navigate = useNavigate();
+
   const submitForm = async (e) => {
     e.preventDefault();
-    const status = await requestOtp(name, email, password);
-    console.log(status);
+    try {
+      const status = await requestOtp(name, email, password);
+      console.log(status)
+      if (status) {
+        navigate("/otp");
+      }
+    } catch (e) {
+      console.error(e);
+    }
   };
 
   return (
