@@ -1,19 +1,12 @@
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 const Home = ({ signedInUser, setSignedInUser }) => {
-  const logout = () => {
-    window.localStorage.removeItem("signedInUser");
-    setSignedInUser(null);
-  };
   return (
     <div>
-      HOME
+      <h2>Home</h2>
       {signedInUser ? (
         <div>
           <div>{signedInUser.name}</div>
-          <div>
-            <button onClick={logout}>Log Out</button>
-          </div>
         </div>
       ) : (
         <div>

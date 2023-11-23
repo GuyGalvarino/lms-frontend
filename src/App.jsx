@@ -5,6 +5,7 @@ import Otp from "./pages/Signin/Otp";
 import Login from "./pages/Login/Login";
 import { useState, useEffect } from "react";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
+import Profile from "./pages/Profile/Profile";
 
 const App = () => {
   const [signedInUser, setSignedInUser] = useState(null);
@@ -17,7 +18,7 @@ const App = () => {
   return (
     <BrowserRouter>
       <Routes>
-        <Route path="/" element={<Layout />}>
+        <Route path="/" element={<Layout signedInUser={signedInUser}/>}>
           <Route
             index
             element={
@@ -44,6 +45,15 @@ const App = () => {
             path="otp"
             element={
               <Otp
+                signedInUser={signedInUser}
+                setSignedInUser={setSignedInUser}
+              />
+            }
+          />
+          <Route
+            path="profile"
+            element={
+              <Profile
                 signedInUser={signedInUser}
                 setSignedInUser={setSignedInUser}
               />

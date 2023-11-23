@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { loginRequest } from "../../services/login";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, Link } from "react-router-dom";
 
 const Login = ({ signedInUser, setSignedInUser }) => {
   const [email, setEmail] = useState("");
@@ -29,9 +29,7 @@ const Login = ({ signedInUser, setSignedInUser }) => {
 
   return (
     <div>
-      <a href="" onClick={() => navigate(-1)}>
-        Back
-      </a>
+      <Link to="/">Back</Link>
       <form onSubmit={submitForm}>
         <div>
           <label htmlFor="email">Email</label>

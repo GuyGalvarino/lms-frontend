@@ -1,6 +1,6 @@
 import { useEffect } from "react";
 import Form from "./Form";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, Link } from "react-router-dom";
 
 const Signin = ({ signedInUser }) => {
   const navigate = useNavigate();
@@ -14,9 +14,7 @@ const Signin = ({ signedInUser }) => {
   return (
     <div>
       <div>
-        <a href="" onClick={() => navigate(-1)}>
-          Back
-        </a>
+        <Link to="/">Back</Link>
       </div>
       <Form />
     </div>
