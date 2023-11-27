@@ -12,8 +12,9 @@ export const requestOtp = async (name, email, password) => {
     userEmail = email;
     return true;
   } catch (e) {
-    if(e.response && e.response.status === 403) {
-      throw new Error("User already exists")
+    console.error(e);
+    if (e.response && e.response.status === 403) {
+      throw new Error("User already exists");
     }
     throw new Error("Couldn't send OTP");
   }

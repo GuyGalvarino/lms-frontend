@@ -13,9 +13,8 @@ const Form = () => {
     e.preventDefault();
     try {
       const status = await requestOtp(name, email, password);
-      console.log(status)
       if (status) {
-        navigate("/otp");
+        navigate("/signin/otp");
       }
     } catch (e) {
       console.error(e);
