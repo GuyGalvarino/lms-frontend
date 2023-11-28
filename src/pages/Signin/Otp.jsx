@@ -40,8 +40,11 @@ const Otp = ({ signedInUser, setSignedInUser }) => {
   };
   return (
     <div>
+      <label htmlFor="otp">
+        <h1>OTP</h1>
+      </label>
       <form onSubmit={submitForm}>
-        <input type="text" value={otp} onChange={updateOtp} />
+        <input type="text" value={otp} id="otp" onChange={updateOtp} />
         <button type="submit">Submit</button>
       </form>
     </div>

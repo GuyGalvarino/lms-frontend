@@ -6,6 +6,7 @@ import {
   setSignedInUser,
   testSignedInUser,
 } from "../../testHelpers";
+import { expect } from "vitest";
 
 beforeEach(() => {
   setSignedInUser(testSignedInUser);
@@ -15,6 +16,16 @@ beforeEach(() => {
       <Profile signedInUser={signedInUser} setSignedInUser={setSignedInUser} />
     </MemoryRouter>
   );
+});
+
+test("name is shown", () => {
+  const name = screen.getByText(/name:/i);
+  expect(name).toHaveTextContent(signedInUser.name);
+});
+
+test("email is shown", () => {
+  const email = screen.getByText(/email:/i);
+  expect(email).toHaveTextContent(signedInUser.email);
 });
 
 test("logout logs out the user", () => {

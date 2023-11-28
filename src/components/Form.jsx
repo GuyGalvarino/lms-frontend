@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { requestOtp } from "../../services/signin";
+import { requestOtp } from "../services/signin";
 import { useNavigate } from "react-router-dom";
 
 const Form = () => {

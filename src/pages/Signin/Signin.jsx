@@ -1,5 +1,5 @@
 import { useEffect } from "react";
-import Form from "./Form";
+import Form from "../../components/Form";
 import { useNavigate, Link } from "react-router-dom";
 
 const Signin = ({ signedInUser }) => {

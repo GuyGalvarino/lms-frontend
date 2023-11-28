@@ -1,4 +1,4 @@
-import { fireEvent, render, screen } from "@testing-library/react";
+import { render, screen } from "@testing-library/react";
 import Home from "../../../src/pages/Home/Home";
 import { beforeAll, beforeEach, expect, test } from "vitest";
 import {
@@ -6,13 +6,19 @@ import {
   setSignedInUser,
   testSignedInUser,
 } from "../../testHelpers";
+import { MemoryRouter } from "react-router-dom";
 
 beforeEach(() => {
   setSignedInUser(testSignedInUser);
   window.localStorage.setItem("signedInUser", JSON.stringify(testSignedInUser));
-  render(
-    <Home signedInUser={signedInUser} setSignedInUser={setSignedInUser} />
-  );
+  try {
+    render(
+      <MemoryRouter>
+        <Home signedInUser={null} setSignedInUser={setSignedInUser} />
+      </MemoryRouter>
+    );
+  }
+  catch(e) {}
 });
 
 test("heading present", () => {

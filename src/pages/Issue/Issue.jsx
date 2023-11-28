@@ -11,7 +11,7 @@ const Issue = ({
 }) => {
   return (
     <div>
-      <div>Issue Book</div>
+      <h2>Issue Book</h2>
       <Link to="/">Back</Link>
       <div>
         <BookList

@@ -42,7 +42,7 @@ const IssuedBookList = ({
 
   return (
     <div className="list">
-      <div>Issued Books</div>
+      <h3>Issued Books</h3>
       {issuedBookList &&
         issuedBookList.map((book) => (
           <BookComponent
